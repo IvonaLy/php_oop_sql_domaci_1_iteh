@@ -26,38 +26,42 @@
 </head>
 <body>
            <div class="pocetna">
+            <button type="button" class="btn btn-primary" onclick="sortirajPoCeni() " style="float:right"> <i class="fa fa-sort" aria-hidden="true"></i>   Sortiraj tretmane po ceni</button>
 
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" id="dodajT">Dodaj</button>
-                <table class="table table-striped">
+                <table class="table table-striped" id="tabelaTretmana">
                     <thead>
                         <tr>
+                        <th scope="col">Opcije</th>
                         <th scope="col">ID</th>
                         <th scope="col">Naziv</th>
                         <th scope="col">Datum</th>
                         <th scope="col">Ime i prezime</th>
-                        <th scope="col">Cena</th>
+                       
                         <th scope="col">Opis</th>
-                        <th scope="col">Opcije</th>
+                        <th scope="col">Cena</th>
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="teloTabele">
                     <?php
                         
                         while($red = $termini->fetch_array()): ?>
 
                             <tr>
-                                <th scope="row"><?php echo $red['idTe'];   ?></th>
-                                <td><?php echo $red['naziv'];   ?></td>  
-                                <td><?php echo $red['datumVreme'];   ?></td>  
-                                <td><?php echo $red['ime']." ".$red['prezime'] ?></td>
-                                <td><?php echo $red['cena']  ?></td> 
-                                <td><?php echo $red['opis']  ?></td> 
-                                <td> 
+                            <td> 
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" onclick="azuriraj1(<?php echo $red['idTe'];?>)">Izmeni</button>   
                                     <button type="button" class="btn btn-danger" onclick="obrisi(<?php echo $red['idTe']?>)">Obrisi</button>
 
                                 </td> 
+                                <th scope="row"><?php echo $red['idTe'];   ?></th>
+                                <td><?php echo $red['naziv'];   ?></td>  
+                                <td><?php echo $red['datumVreme'];   ?></td>  
+                                <td><?php echo $red['ime']." ".$red['prezime'] ?></td>
+                                 
+                                <td><?php echo $red['opis']  ?></td> 
+                                <td><?php echo $red['cena']  ?></td> 
+                               
 
 
                             </tr>
@@ -70,7 +74,9 @@
 
                     </tbody>
                     </table>
-
+                    <!-- Sledeca linija koda nam treba da bismo cuvali podatak da li treba da soritamo rastuce ili opadajuce -->
+                    <input type="hidden" id="poredak" value="asc"> 
+                                     
            </div>
 
 
