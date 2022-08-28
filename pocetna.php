@@ -1,6 +1,11 @@
 <?php
-    include 'dbbroker.php';
-    include 'model/termin.php';
+    include 'dbbroker.php'; 
+
+    include 'model/termin.php'; 
+    include 'model/tretman.php';
+    include 'model/zaposleni.php';
+
+
     $termini = Termin::vratiSveTermine($conn);
 
 ?>
@@ -17,11 +22,12 @@
             padding: 10%;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
            <div class="pocetna">
 
-                <button type="button" class="btn btn-success">Dodaj</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" id="dodajT">Dodaj</button>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -66,6 +72,133 @@
                     </table>
 
            </div>
+
+
+
+ <!-- Modal za rezervisanje novog termina -->
+ <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Rezervisi novi termin </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="rezervisi" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
+                           
+
+                                        
+
+                            <div class="form-group">
+                                    
+                                    <label for="kozmeticari">Odaberi zaposlenog</label><br>
+                                      <select name="kozmeticari" id="kozmeticari">
+                                      <?php
+                                         $kozmeticari = Zaposleni::vratiSve($conn);  
+                                        while($red = $kozmeticari->fetch_array()): 
+                                      ?>
+                                      
+                                        <option value=<?php echo $red["id"]?>><?php echo $red["ime"]." ".$red["prezime"]?></option>
+
+
+                                        <?php   endwhile;   ?>
+                                      </select>
+                                         
+                              </div>
+
+                              <div class="form-group">
+                                      <label for="tretmani">Odaberi tretman</label><br>
+                                      <select name="tretmani" id="tretmani">
+                                      <?php
+                                         $tretmani = Tretman::vratiSveTretmane($conn);  
+                                        while($red = $tretmani->fetch_array()):
+                                      ?>
+                                      
+                                        <option value=<?php echo $red["idTr"]?>><?php echo $red["naziv"]?></option>
+
+
+                                        <?php   endwhile;   ?>
+                                      </select>
+                                </div>
+
+ 
+                                <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Datum rezervacije</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="date" id="datum" name="datum" class="form-control"  required="required" />
+                                            </div>
+                                        </div>
+                                </div>
+   
+         
+
+                       
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Odustani</button>
+                            <button type="submit" class="btn btn-success" id="addButton">Potvrdi</button>
+                        </div>
+
+
+
+                    </form>
+                    </div>
+              
+           
+                </div>
+            </div>
+
+ <!-- kraj Modala za rezervisanje novog termina -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <script src="js/main.js"></script>      
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

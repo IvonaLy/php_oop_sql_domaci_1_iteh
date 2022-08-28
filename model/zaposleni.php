@@ -34,8 +34,15 @@
             return $conn->query($upit);
     
         }
- 
+        public static function vratiSve($conn){
+            $upit = "Select * from zaposleni";
 
+
+          
+            return $conn->query($upit);
+    
+        }
+         
     }
 
 

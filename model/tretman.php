@@ -17,7 +17,11 @@
             $this->opis=$opis; 
 
         }
-  
+        public static function vratiSveTretmane($conn){
+            $upit ="select * from tretman";
+
+            return $conn->query($upit);
+        }
 
 
 
