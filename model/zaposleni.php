@@ -22,14 +22,14 @@
 
 
         public static function login($kozmeticar, $conn){
-            $upit = "Select * from zaposleni where email='$kozmeticar->email' and lozinka= '$kozmeticar->sifra'";
+            $upit = "Select * from zaposleni where email='$kozmeticar->email' and sifra= '$kozmeticar->sifra'";
 
 
             return $conn->query($upit);
         }
 
         public static function register($kozmeticar,$conn){
-            $upit = "insert into zaposleni(ime,prezime,email,lozinka) values('$kozmeticar->ime','$kozmeticar->prezime','$kozmeticar->email' ,'$kozmeticar->sifra') ";
+            $upit = "insert into zaposleni(ime,prezime,email,sifra) values('$kozmeticar->ime','$kozmeticar->prezime','$kozmeticar->email' ,'$kozmeticar->sifra') ";
         
             return $conn->query($upit);
     
