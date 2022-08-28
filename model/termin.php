@@ -30,7 +30,7 @@
         }
 
         public static function otkaziTermin($id, $conn){
-            $upit = "delete from termin where id=$id";
+            $upit = "delete from termin where idTe=$id";
 
             return $conn->query($upit); 
 
