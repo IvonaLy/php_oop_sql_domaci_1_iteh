@@ -82,8 +82,8 @@ function azuriraj1(id) {
        $('#terminZaIzmenu').val(response[0]["idTe"]); //skriveno polje 
  
         
-      
-       $('#kozmeticarE').val(response[0]["zaposleni"]);
+       
+       $('#kozmeticariE').val(response[0]["zaposleni"]);
         console.log(response[0]["zaposleni"]);
 
        $('#tretmaniE').val(response[0]["idTr"]);
@@ -97,4 +97,38 @@ function azuriraj1(id) {
         console.error('The following error occurred: ' + textStatus, errorThrown);
     });
 
-}
+};
+
+//sada kada korisnik unese neke izmene hocemo da klikom na dugme potvrdi te izmene zaista unesemo u bazu
+$('#promeniTermin').submit(function () { //kada korisnik klikne dugme unutar modala
+        
+    event.preventDefault();
+
+    const $form =  $(this);
+   
+    const $inputs = $form.find('input, select, button, textarea');
+    
+    const serializedData = $form.serialize();
+   
+    $inputs.prop('disabled', true);
+
+  
+    request = $.ajax({
+        url: 'handler/edit.php',
+        type: 'post',
+        data: serializedData
+    })
+
+    request.done(function (response, textStatus, jqXHR) {
+        console.log(response);
+        alert("A");
+        $('#editModal').modal('hide');
+        location.reload(true);
+        $('#promeniTermin').reset;
+
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.error('The following error occurred: ' + textStatus, errorThrown);
+});
+});

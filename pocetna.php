@@ -54,7 +54,7 @@
                                 <td><?php echo $red['cena']  ?></td> 
                                 <td><?php echo $red['opis']  ?></td> 
                                 <td> 
-                                    <button type="button" class="btn btn-primary">Izmeni</button>   
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" onclick="azuriraj1(<?php echo $red['idTe'];?>)">Izmeni</button>   
                                     <button type="button" class="btn btn-danger" onclick="obrisi(<?php echo $red['idTe']?>)">Obrisi</button>
 
                                 </td> 
@@ -161,6 +161,96 @@
 
 
 
+
+
+ <!-- Modal za izmenu termina -->
+ <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Izmeni termin </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="promeniTermin" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
+                                   <input type="hidden" id="terminZaIzmenu" name="terminZaIzmenu">
+
+                              
+                                                                        
+
+                            <div class="form-group">
+                                    
+                                    <label for="kozmeticariE">Odaberi zaposlenog</label><br>
+                                      <select name="kozmeticariE" id="kozmeticariE">
+                                      <?php
+                                         $kozmeticari = Zaposleni::vratiSve($conn);  
+                                        while($red = $kozmeticari->fetch_array()): 
+                                      ?>
+                                      
+                                        <option value=<?php echo $red["id"]?>><?php echo $red["ime"]." ".$red["prezime"]?></option>
+
+
+                                        <?php   endwhile;   ?>
+                                      </select>
+                                         
+                              </div>
+
+                              <div class="form-group">
+                                      <label for="tretmaniE">Odaberi tretman</label><br>
+                                      <select name="tretmaniE" id="tretmaniE">
+                                      <?php
+                                         $tretmani = Tretman::vratiSveTretmane($conn);  
+                                        while($red = $tretmani->fetch_array()):
+                                      ?>
+                                      
+                                        <option value=<?php echo $red["idTr"]?>><?php echo $red["naziv"]?></option>
+
+
+                                        <?php   endwhile;   ?>
+                                      </select>
+                                </div>            
+
+
+ 
+                           
+                             
+                            
+                            
+                                <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Datum rezervacije</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input type="date" id="datumE" name="datumE" class="form-control"  required="required" />
+                                            </div>
+                                        </div>
+                                </div>
+  
+         
+
+                       
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Odustani</button>
+                            <button type="submit" class="btn btn-success" >Potvrdi</button>
+                        </div>
+
+
+
+                    </form>
+                    </div>
+              
+           
+                </div>
+            </div>
+
+ <!-- kraj Modala za izmenu termina -->
 
 
 

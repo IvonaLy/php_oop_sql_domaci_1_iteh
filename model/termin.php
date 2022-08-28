@@ -37,13 +37,27 @@
         }
 
         public static function promeniTermin($termin,$conn){
-            $upit = "update termin set datumVreme='$termin->datumVreme', tretman=$termin->tretman where id=$termin->id";
+            $upit = "update termin set datumVreme='$termin->datumVreme', tretman=$termin->tretman, zaposleni=$termin->kozmeticar where idTe=$termin->id";
 
             return $conn->query($upit); 
         }
 
          
-         
+        public static function prikaziTerminpoID($id, $conn){
+            $upit = "select * from termin t inner join zaposleni k on t.zaposleni=k.id inner join tretman tr on tr.idTr = t.tretman where t.idTe=$id";
+            $myArray = array();
+            $result = $conn->query($upit);
+            
+            if($result){
+                while($row = $result->fetch_array()){
+    
+                    $myArray[] = $row;
+                }
+            }
+            
+            return  $myArray ;
+
+        }
 
 
 
