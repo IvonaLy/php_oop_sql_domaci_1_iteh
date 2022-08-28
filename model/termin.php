@@ -17,7 +17,7 @@
 
 
         public static function vratiSveTermine($conn){
-            $upit = "select * from termin t inner join zaposleni k on t.zaposleni=k.idK inner join tretman tr on tr.idT = t.tretman";
+            $upit = "select * from termin t inner join zaposleni k on t.zaposleni=k.id inner join tretman tr on tr.idTr = t.tretman";
 
             return $conn->query($upit); 
         }
