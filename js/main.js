@@ -61,3 +61,40 @@ $('#rezervisi').submit(function () {
         console.error('Greska: ' + textStatus, errorThrown);
     });
 });
+
+//kada hocemo neki vec postojeci termin da editujemo, kada korisnik klikne na glavno dugme
+//treba da se otvori modal koji ce biti popunjen podacima koji se nalaze u tabeli 
+function azuriraj1(id) {
+   
+     
+    request = $.ajax({
+        url: 'handler/get.php',
+        type: 'post',
+        data: { 'id': id },
+        dataType: 'json'
+    });
+
+
+    request.done(function (response, textStatus, jqXHR) {
+ 
+
+
+       $('#terminZaIzmenu').val(response[0]["idTe"]); //skriveno polje 
+ 
+        
+      
+       $('#kozmeticarE').val(response[0]["zaposleni"]);
+        console.log(response[0]["zaposleni"]);
+
+       $('#tretmaniE').val(response[0]["idTr"]);
+ 
+
+        $('#datumE').val(response[0]['datumVreme'].trim());   
+ 
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.error('The following error occurred: ' + textStatus, errorThrown);
+    });
+
+}
