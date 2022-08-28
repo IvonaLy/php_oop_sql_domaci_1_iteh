@@ -135,6 +135,18 @@ $('#promeniTermin').submit(function () { //kada korisnik klikne dugme unutar mod
 
 
 
+//pretrazivanje tretmana po nazivu ili opisu tretmana 
+$(document).ready(function() {
+    $("#searchbar").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#teloTabele tr").filter(function() {
+            $(this).toggle($(this).text()
+            .toLowerCase().indexOf(value) > -1)
+        });
+      
+    });
+});
+
 //funkcija za soritranje tretmana po ceni 
 function sortirajPoCeni() {
     
