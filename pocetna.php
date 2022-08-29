@@ -25,7 +25,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -69,7 +69,7 @@
                         while($red = $termini->fetch_array()): ?>
 
                             <tr>
-                            <td> 
+                                <td> 
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" onclick="azuriraj1(<?php echo $red['idTe'];?>)">Izmeni</button>   
                                     <button type="button" class="btn btn-danger" onclick="obrisi(<?php echo $red['idTe']?>)">Obrisi</button>
 
