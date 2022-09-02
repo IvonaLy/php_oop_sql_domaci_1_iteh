@@ -121,7 +121,7 @@ $('#promeniTermin').submit(function () { //kada korisnik klikne dugme unutar mod
 
     request.done(function (response, textStatus, jqXHR) {
         console.log(response);
-        alert("A");
+       
         $('#editModal').modal('hide');
         location.reload(true);
         $('#promeniTermin').reset;
@@ -130,7 +130,7 @@ $('#promeniTermin').submit(function () { //kada korisnik klikne dugme unutar mod
 
     request.fail(function (jqXHR, textStatus, errorThrown) {
         console.error('The following error occurred: ' + textStatus, errorThrown);
-});
+    });
 });
 
 

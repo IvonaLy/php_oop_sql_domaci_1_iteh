@@ -24,8 +24,9 @@
         public static function login($kozmeticar, $conn){
             $upit = "Select * from zaposleni where email='$kozmeticar->email' and sifra= '$kozmeticar->sifra'";
 
-
-            return $conn->query($upit);
+            $status= $conn->query($upit);
+            
+            return  $status;
         }
 
         public static function register($kozmeticar,$conn){

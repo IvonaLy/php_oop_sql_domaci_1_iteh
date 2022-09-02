@@ -12,7 +12,7 @@
 
         $status = Zaposleni::login($kozmeticar,$conn);
 
-        if($status){
+        if(mysqli_num_rows($status)>0){
             echo "ULOGOVAN";
             
             header('Location: pocetna.php'); //ako je korisnik ulogovan mozemo da ga posaljemo na glavnu stranicu
@@ -49,15 +49,7 @@
 
 
     }
-
-
-
-
-
-
-
-
-
+ 
 
 
 
